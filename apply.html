@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply · N1AC</title>
+  <meta name="description" content="Apply to join N1AC. You use your own capital. You take responsibility for your decisions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="nav">
+    <a class="nav__mark" href="/" aria-label="N1AC home">N1AC</a>
+    <nav class="nav__links">
+      <a href="/submit">Submit</a>
+      <a href="/apply" aria-current="page">Apply</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <section class="page-head">
+      <p class="page-head__label">For investors</p>
+      <h1>Apply to join.</h1>
+      <p class="page-head__sub">This is not for most people. You use your own capital. You take responsibility for your&nbsp;decisions.</p>
+    </section>
+
+    <section class="section section--form">
+      <form name="apply-investor" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thanks">
+        <input type="hidden" name="form-name" value="apply-investor">
+        <p class="hp"><label>Leave this empty <input name="bot-field"></label></p>
+
+        <div class="field">
+          <label for="a-name">Your name</label>
+          <input id="a-name" name="name" type="text" required autocomplete="name">
+        </div>
+
+        <div class="field">
+          <label for="a-email">Email</label>
+          <input id="a-email" name="email" type="email" required autocomplete="email">
+        </div>
+
+        <div class="field">
+          <label for="a-contact">WeChat or LinkedIn</label>
+          <input id="a-contact" name="contact" type="text">
+        </div>
+
+        <div class="field">
+          <label for="a-background">What do you do?</label>
+          <textarea id="a-background" name="background" rows="4" required></textarea>
+        </div>
+
+        <div class="field">
+          <label for="a-experience">Have you invested before?</label>
+          <select id="a-experience" name="experience" required>
+            <option value="">Select…</option>
+            <option>Not yet</option>
+            <option>A few angel cheques</option>
+            <option>Active angel</option>
+            <option>Fund or institutional</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="a-why">Why this group?</label>
+          <textarea id="a-why" name="why" rows="5" required></textarea>
+          <p class="field__hint">We read these carefully.</p>
+        </div>
+
+        <div class="field field--check">
+          <label class="check">
+            <input type="checkbox" name="acknowledged" value="yes" required>
+            <span>I invest my own capital and take responsibility for my own decisions.</span>
+          </label>
+        </div>
+
+        <button class="btn" type="submit">Send</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span class="footer__mark" aria-hidden="true">&there4;</span>
+    <span class="footer__note">&copy; 2026 N1AC</span>
+  </footer>
+
+</body>
+</html>

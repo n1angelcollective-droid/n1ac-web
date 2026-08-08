@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit · N1AC</title>
+  <meta name="description" content="Submit your company to N1AC. One session. Multiple investors. Independent decisions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="nav">
+    <a class="nav__mark" href="/" aria-label="N1AC home">N1AC</a>
+    <nav class="nav__links">
+      <a href="/submit" aria-current="page">Submit</a>
+      <a href="/apply">Apply</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <section class="page-head">
+      <p class="page-head__label">For founders</p>
+      <h1>Submit your company.</h1>
+      <p class="page-head__sub">One session. Multiple investors. Real feedback. Possible&nbsp;capital.</p>
+    </section>
+
+    <section class="section section--form">
+      <form name="submit-company" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thanks">
+        <input type="hidden" name="form-name" value="submit-company">
+        <p class="hp"><label>Leave this empty <input name="bot-field"></label></p>
+
+        <div class="field">
+          <label for="s-name">Your name</label>
+          <input id="s-name" name="name" type="text" required autocomplete="name">
+        </div>
+
+        <div class="field">
+          <label for="s-email">Email</label>
+          <input id="s-email" name="email" type="email" required autocomplete="email">
+        </div>
+
+        <div class="field">
+          <label for="s-company">Company</label>
+          <input id="s-company" name="company" type="text" required>
+        </div>
+
+        <div class="field">
+          <label for="s-link">Website or deck link</label>
+          <input id="s-link" name="link" type="url" placeholder="https://">
+        </div>
+
+        <div class="field">
+          <label for="s-stage">Stage</label>
+          <select id="s-stage" name="stage" required>
+            <option value="">Select…</option>
+            <option>Pre-seed</option>
+            <option>Seed</option>
+            <option>Before product</option>
+            <option>Before revenue</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="s-what">What are you building?</label>
+          <textarea id="s-what" name="what" rows="5" required></textarea>
+          <p class="field__hint">A few sentences. Plain language.</p>
+        </div>
+
+        <div class="field">
+          <label for="s-raising">Raising</label>
+          <input id="s-raising" name="raising" type="text" placeholder="Amount and terms, if decided">
+        </div>
+
+        <button class="btn" type="submit">Send</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span class="footer__mark" aria-hidden="true">&there4;</span>
+    <span class="footer__note">&copy; 2026 N1AC</span>
+  </footer>
+
+</body>
+</html>
