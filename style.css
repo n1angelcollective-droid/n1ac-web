@@ -9,8 +9,11 @@
   --ink-dim: #9a958b;
   --ink-faint: #55524c;
   --hairline: #232227;
-  --serif: "Spectral", Georgia, "Times New Roman", serif;
-  --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
+  /* Brand fonts carried over from the previous site:
+     headings Manrope 500 / -0.02em, body Poppins 400. */
+  --heading: "Manrope", "Segoe UI", Helvetica, Arial, sans-serif;
+  --body: "Poppins", "Segoe UI", Helvetica, Arial, sans-serif;
+  --label: "Manrope", "Segoe UI", Helvetica, Arial, sans-serif;
   --measure: 34em;
 }
 
@@ -21,10 +24,10 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(1.02rem, 0.95rem + 0.3vw, 1.18rem);
-  line-height: 1.75;
+  font-family: var(--body);
+  font-weight: 400;
+  font-size: clamp(1rem, 0.94rem + 0.28vw, 1.1rem);
+  line-height: 1.8;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -50,9 +53,9 @@ strong { font-weight: 500; }
 }
 
 .nav__mark {
-  font-family: var(--serif);
+  font-family: var(--heading);
   font-size: 1.05rem;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 0.14em;
   text-decoration: none;
   opacity: 0.9;
@@ -64,9 +67,9 @@ strong { font-weight: 500; }
 }
 
 .nav__links a {
-  font-family: var(--mono);
+  font-family: var(--label);
   font-size: 0.72rem;
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
@@ -95,7 +98,11 @@ strong { font-weight: 500; }
 
 .hero__symbols span {
   position: absolute;
-  font-family: var(--serif);
+  font-family: var(--label);
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  white-space: nowrap;
   color: var(--ink);
   opacity: 0;
   animation: symbol-pulse var(--dur, 14s) ease-in-out var(--delay, 0s) infinite;
@@ -113,10 +120,11 @@ strong { font-weight: 500; }
 }
 
 .hero__title {
-  font-size: clamp(2rem, 1.2rem + 4.2vw, 4rem);
-  font-weight: 300;
+  font-family: var(--heading);
+  font-size: clamp(1.9rem, 1.15rem + 4vw, 3.8rem);
+  font-weight: 500;
   line-height: 1.22;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   opacity: 0;
   animation: rise 1.6s 0.3s ease forwards;
 }
@@ -139,7 +147,7 @@ strong { font-weight: 500; }
 
 .hero__sub {
   margin-top: 2.2rem;
-  font-family: var(--mono);
+  font-family: var(--label);
   font-size: 0.74rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -191,9 +199,9 @@ strong { font-weight: 500; }
   display: flex;
   align-items: baseline;
   gap: 1.1rem;
-  font-family: var(--mono);
+  font-family: var(--label);
   font-size: 0.7rem;
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -206,10 +214,11 @@ strong { font-weight: 500; }
 }
 
 .section h2 {
-  font-size: clamp(1.55rem, 1.2rem + 1.6vw, 2.3rem);
-  font-weight: 300;
-  line-height: 1.3;
-  letter-spacing: -0.005em;
+  font-family: var(--heading);
+  font-size: clamp(1.5rem, 1.15rem + 1.5vw, 2.2rem);
+  font-weight: 500;
+  line-height: 1.32;
+  letter-spacing: -0.02em;
   margin-bottom: 2.4rem;
 }
 
@@ -233,7 +242,7 @@ strong { font-weight: 500; }
 .cta { margin-top: 2.4em !important; }
 
 .cta a {
-  font-family: var(--mono);
+  font-family: var(--label);
   font-size: 0.78rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -262,10 +271,11 @@ strong { font-weight: 500; }
 }
 
 .statement p {
-  font-size: clamp(1.5rem, 1.1rem + 1.7vw, 2.4rem);
-  font-weight: 300;
+  font-family: var(--heading);
+  font-size: clamp(1.45rem, 1.05rem + 1.6vw, 2.3rem);
+  font-weight: 500;
   line-height: 1.35;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.02em;
 }
 
 /* ——— contact ——— */
@@ -278,7 +288,7 @@ strong { font-weight: 500; }
 }
 
 .contact dt {
-  font-family: var(--mono);
+  font-family: var(--label);
   font-size: 0.68rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -286,7 +296,7 @@ strong { font-weight: 500; }
 }
 
 .contact dd {
-  font-family: var(--mono);
+  font-family: var(--label);
   font-size: 0.92rem;
   letter-spacing: 0.04em;
   color: var(--ink);
@@ -309,9 +319,9 @@ strong { font-weight: 500; }
 }
 
 .page-head__label {
-  font-family: var(--mono);
+  font-family: var(--label);
   font-size: 0.7rem;
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -319,10 +329,11 @@ strong { font-weight: 500; }
 }
 
 .page-head h1 {
-  font-size: clamp(1.8rem, 1.3rem + 2vw, 2.8rem);
-  font-weight: 300;
+  font-family: var(--heading);
+  font-size: clamp(1.75rem, 1.25rem + 1.9vw, 2.7rem);
+  font-weight: 500;
   line-height: 1.25;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   margin-bottom: 1.6rem;
 }
 
@@ -337,9 +348,9 @@ strong { font-weight: 500; }
 
 .field label {
   display: block;
-  font-family: var(--mono);
+  font-family: var(--label);
   font-size: 0.68rem;
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -356,8 +367,8 @@ strong { font-weight: 500; }
   border-radius: 0;
   padding: 0.55rem 0 0.7rem;
   color: var(--ink);
-  font-family: var(--serif);
-  font-weight: 300;
+  font-family: var(--body);
+  font-weight: 400;
   font-size: 1rem;
   line-height: 1.6;
   transition: border-color 0.3s ease;
@@ -402,7 +413,7 @@ strong { font-weight: 500; }
   display: flex !important;
   align-items: flex-start;
   gap: 0.8rem;
-  font-family: var(--serif) !important;
+  font-family: var(--body) !important;
   font-size: 0.95rem !important;
   letter-spacing: 0 !important;
   text-transform: none !important;
@@ -431,7 +442,7 @@ strong { font-weight: 500; }
   border-radius: 2px;
   padding: 0.9rem 2.4rem;
   color: var(--ink);
-  font-family: var(--mono);
+  font-family: var(--label);
   font-size: 0.75rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -460,9 +471,10 @@ strong { font-weight: 500; }
 }
 
 .thanks h1 {
-  font-size: clamp(1.8rem, 1.3rem + 2vw, 2.8rem);
-  font-weight: 300;
-  letter-spacing: -0.01em;
+  font-family: var(--heading);
+  font-size: clamp(1.75rem, 1.25rem + 1.9vw, 2.7rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
   margin-bottom: 1.4rem;
 }
 
@@ -481,10 +493,10 @@ strong { font-weight: 500; }
   color: var(--ink-faint);
 }
 
-.footer__mark { font-family: var(--serif); font-size: 1.1rem; }
+.footer__mark { font-family: var(--heading); font-size: 1.1rem; }
 
 .footer__note {
-  font-family: var(--mono);
+  font-family: var(--label);
   font-size: 0.72rem;
   letter-spacing: 0.1em;
 }

@@ -1,22 +1,57 @@
-// Faint symbols of accumulation drifting in the hero background.
+// Faint venture-capital vocabulary drifting in the hero background.
 (function () {
   const host = document.querySelector(".hero__symbols");
   if (!host) return;
 
-  const glyphs = ["∑", "∴", "→", "∆", "±", "∫", "⊕", "≫", "×", "∞", "∇", "√"];
-  const count = 14;
+  const words = [
+    "PRE-SEED", "SEED", "TERM SHEET", "CAP TABLE", "SAFE",
+    "VALUATION", "DILUTION", "RUNWAY", "TRACTION", "DILIGENCE",
+    "CONVICTION", "PORTFOLIO", "SYNDICATE", "PRO RATA", "DEAL FLOW",
+    "ALLOCATION", "FOLLOW-ON", "THESIS", "BURN RATE", "EQUITY"
+  ];
+
+  // Shuffle so the same words are not always the ones shown.
+  const pool = words.slice();
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+
+  const count = 12;
+  const rows = count;
+
+  const placed = [];
 
   for (let i = 0; i < count; i++) {
     const s = document.createElement("span");
-    s.textContent = glyphs[i % glyphs.length];
-    s.style.left = 4 + Math.random() * 92 + "%";
-    s.style.top = 6 + Math.random() * 88 + "%";
-    s.style.fontSize = 0.8 + Math.random() * 1.4 + "rem";
-    s.style.setProperty("--dur", 10 + Math.random() * 14 + "s");
-    s.style.setProperty("--delay", Math.random() * 12 + "s");
-    s.style.setProperty("--peak", (0.04 + Math.random() * 0.05).toFixed(3));
+    s.textContent = pool[i % pool.length];
+    // Spread vertically by band so they don't clump onto the headline.
+    s.style.left = 2 + Math.random() * 88 + "%";
+    s.style.top = ((i + Math.random() * 0.8) * (92 / rows) + 4).toFixed(2) + "%";
+    s.style.fontSize = (0.58 + Math.random() * 0.34).toFixed(3) + "rem";
+    s.style.setProperty("--dur", 12 + Math.random() * 14 + "s");
+    s.style.setProperty("--delay", Math.random() * 14 + "s");
+    s.style.setProperty("--peak", (0.035 + Math.random() * 0.045).toFixed(3));
     host.appendChild(s);
+    placed.push(s);
   }
+
+  // Words are far wider than glyphs, so a random left offset can push them off
+  // the right edge and get them clipped. Measure once, then pull back any that
+  // overhang. Done in a single batched pass to avoid layout thrash.
+  requestAnimationFrame(function () {
+    const hostWidth = host.clientWidth;
+    if (!hostWidth) return;
+    const widths = placed.map((s) => s.offsetWidth);
+    placed.forEach(function (s, i) {
+      const maxLeft = hostWidth - widths[i] - hostWidth * 0.02;
+      if (maxLeft <= 0) return;
+      const current = (parseFloat(s.style.left) / 100) * hostWidth;
+      if (current > maxLeft) {
+        s.style.left = ((maxLeft / hostWidth) * 100).toFixed(2) + "%";
+      }
+    });
+  });
 })();
 
 // Reveal sections on scroll.
