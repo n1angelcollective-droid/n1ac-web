@@ -108,6 +108,13 @@ strong { font-weight: 500; }
   animation: symbol-pulse var(--dur, 14s) ease-in-out var(--delay, 0s) infinite;
 }
 
+/* The brand mark sits above the vocabulary: heavier, tighter, brighter. */
+.hero__symbols span.is-brand {
+  font-family: var(--heading);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
 @keyframes symbol-pulse {
   0%, 100% { opacity: 0; }
   50% { opacity: var(--peak, 0.07); }

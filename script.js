@@ -17,24 +17,51 @@
     [pool[i], pool[j]] = [pool[j], pool[i]];
   }
 
-  const count = 12;
-  const rows = count;
+  const TERM_COUNT = 11;
+  const BRAND_COUNT = 5;
 
+  // The brand mark recurs through the field, larger and brighter than the
+  // surrounding vocabulary so it reads as the dominant word. Its slots are
+  // spaced evenly rather than shuffled in — two large marks landing in
+  // adjacent vertical bands overlap and read as a mistake.
+  const rows = TERM_COUNT + BRAND_COUNT;
+  const brandSlots = new Set();
+  for (let k = 0; k < BRAND_COUNT; k++) {
+    brandSlots.add(Math.floor(((k + 0.5) * rows) / BRAND_COUNT));
+  }
+
+  const items = [];
+  let termIndex = 0;
+  for (let i = 0; i < rows; i++) {
+    if (brandSlots.has(i)) {
+      items.push({ text: "N1AC", brand: true });
+    } else {
+      items.push({ text: pool[termIndex++ % pool.length], brand: false });
+    }
+  }
   const placed = [];
 
-  for (let i = 0; i < count; i++) {
+  items.forEach(function (item, i) {
     const s = document.createElement("span");
-    s.textContent = pool[i % pool.length];
+    s.textContent = item.text;
+    if (item.brand) s.className = "is-brand";
     // Spread vertically by band so they don't clump onto the headline.
     s.style.left = 2 + Math.random() * 88 + "%";
-    s.style.top = ((i + Math.random() * 0.8) * (92 / rows) + 4).toFixed(2) + "%";
-    s.style.fontSize = (0.58 + Math.random() * 0.34).toFixed(3) + "rem";
+    s.style.top = ((i + Math.random() * 0.8) * (92 / rows) + 3).toFixed(2) + "%";
+    s.style.fontSize = item.brand
+      ? (1.5 + Math.random() * 1.3).toFixed(3) + "rem"
+      : (0.58 + Math.random() * 0.34).toFixed(3) + "rem";
     s.style.setProperty("--dur", 12 + Math.random() * 14 + "s");
     s.style.setProperty("--delay", Math.random() * 14 + "s");
-    s.style.setProperty("--peak", (0.035 + Math.random() * 0.045).toFixed(3));
+    s.style.setProperty(
+      "--peak",
+      item.brand
+        ? (0.13 + Math.random() * 0.08).toFixed(3)
+        : (0.035 + Math.random() * 0.045).toFixed(3)
+    );
     host.appendChild(s);
     placed.push(s);
-  }
+  });
 
   // Words are far wider than glyphs, so a random left offset can push them off
   // the right edge and get them clipped. Measure once, then pull back any that
