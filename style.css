@@ -22,6 +22,8 @@
 html { scroll-behavior: smooth; }
 
 body {
+  position: relative;
+  overflow-x: hidden;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--body);
@@ -90,13 +92,22 @@ strong { font-weight: 500; }
   padding: 0 1.5rem;
 }
 
-.hero__symbols {
+/* ——— background word field ——— */
+
+/* Spans the whole document rather than just the hero, so the vocabulary
+   keeps drifting behind every section as you scroll. */
+.wordfield {
   position: absolute;
   inset: 0;
+  overflow: hidden;
   pointer-events: none;
+  z-index: 0;
 }
 
-.hero__symbols span {
+/* Content sits above the field. */
+.nav, main, .footer { position: relative; z-index: 1; }
+
+.wordfield span {
   position: absolute;
   font-family: var(--label);
   font-weight: 500;
@@ -109,7 +120,7 @@ strong { font-weight: 500; }
 }
 
 /* The brand mark sits above the vocabulary: heavier, tighter, brighter. */
-.hero__symbols span.is-brand {
+.wordfield span.is-brand {
   font-family: var(--heading);
   font-weight: 600;
   letter-spacing: 0.16em;
@@ -134,22 +145,6 @@ strong { font-weight: 500; }
   letter-spacing: -0.02em;
   opacity: 0;
   animation: rise 1.6s 0.3s ease forwards;
-}
-
-.cursor {
-  display: inline-block;
-  width: 0.06em;
-  height: 0.85em;
-  margin-left: 0.12em;
-  background: var(--ink);
-  vertical-align: baseline;
-  animation: blink 1.2s step-end 2s infinite;
-  opacity: 0;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 0.85; }
 }
 
 .hero__sub {
@@ -538,7 +533,7 @@ strong { font-weight: 500; }
   html { scroll-behavior: auto; }
   .hero__title, .hero__sub, .hero__scroll { animation: none; opacity: 1; transform: none; }
   .hero__scroll { transform: translateX(-50%); }
-  .cursor { animation: none; opacity: 0.85; }
-  .hero__symbols span { animation: none; opacity: 0.05; }
+  .wordfield span { animation: none; opacity: 0.05; }
+  .wordfield span.is-brand { opacity: 0.14; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
