@@ -45,16 +45,26 @@ The plan is to keep the domain registered there and cancel only the website
 subscription — registration and the website plan are billed separately.
 
 1. Deploy to Netlify and confirm the temporary `*.netlify.app` URL works.
+   Optionally rename it under **Site configuration → Change site name** so the
+   CNAME target below is memorable (e.g. `n1ac.netlify.app`).
 2. Netlify → **Domain management** → **Add a domain** → `n1-ac.com`.
-   Choose to keep your existing DNS host when asked. Netlify then shows the
-   exact records to create — use those values, not the ones below, if they differ.
+   Choose to keep your existing DNS host when asked.
+
+   To see the required records afterwards: **Domain management → Production
+   domains →** click **"Pending DNS verification"** next to the domain. The modal
+   shows values for your specific site — use those if they differ from below.
+
 3. Squarespace → **Domains** → `n1-ac.com` → **DNS settings**. Remove the existing
    Squarespace A records and the `www` CNAME, then add:
 
-   | Type  | Host | Value                    |
-   |-------|------|--------------------------|
-   | A     | `@`  | Netlify's load balancer IP |
-   | CNAME | `www`| `<your-site>.netlify.app` |
+   | Type  | Host  | Value                     |
+   |-------|-------|---------------------------|
+   | A     | `@`   | `75.2.60.5`               |
+   | CNAME | `www` | `<your-site>.netlify.app` |
+
+   Netlify prefers an ALIAS/ANAME record to `apex-loadbalancer.netlify.com` for
+   the apex, but Squarespace DNS does not support those record types, so the
+   `75.2.60.5` A record is the correct fallback here.
 
 4. Wait for DNS to propagate (usually under an hour, up to 48h) and confirm
    Netlify has issued the HTTPS certificate.
